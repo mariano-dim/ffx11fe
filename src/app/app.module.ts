@@ -8,12 +8,18 @@ import { DirectivaComponent } from './directiva/directiva.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ClienteService } from './clientes/cliente.service';
 import { RouterModule, Routes} from '@angular/router';
+import { HttpClientModule} from '@angular/common/http';
+import { FormComponent } from './clientes/form.component';
+import { FormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/clientes', pathMatch: 'full'},
-  {path: 'directivas', component: DirectivaComponent },
-  {path: 'clientes', component: ClientesComponent },
+  { path: '', redirectTo: '/clientes', pathMatch: 'full' },
+  { path: 'directivas', component: DirectivaComponent },
+  { path: 'clientes', component: ClientesComponent },
+  { path: 'clientes/form', component: FormComponent },
+  { path: 'clientes/form/:id', component: FormComponent },
 ] ;
 
 @NgModule({
@@ -22,10 +28,14 @@ const routes: Routes = [
     FooterComponent,
     HeaderComponent,
     DirectivaComponent,
-    ClientesComponent
+    ClientesComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    SweetAlert2Module,
     RouterModule.forRoot(routes)
   ],
   providers: [ClienteService],
